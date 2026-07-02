@@ -1,5 +1,7 @@
 # Automation-Config-Management-Procore-Plus-Lab
+
 Automation &amp; Configuration Management — Ansible playbooks, Foreman remote execution and host registration, and Terraform installation for infrastructure-as-code workflows.
+
 ## Environment
 CentOS Stream / RHEL-based VMs in the Procore-Plus lab (dev-app, stage-web, dev-performance hosts), managed as a production-style environment with Jira ticket tracking.
 
