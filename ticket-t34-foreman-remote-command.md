@@ -1,6 +1,6 @@
-> **PROCORE-PLUS LAB** **Ticket T-34: Foreman Remote Command: Create User rcamilo** *Remote Job Execution · useradd · SSH Trust · Foreman Proxy*
+> **PROCORE-PLUS LAB** **Ticket 4: Foreman Remote Command: Create User rcamilo** *Remote Job Execution · useradd · SSH Trust · Foreman Proxy*
 
-| **Ticket ID**   T-34 | **Reporter**   Procore Plus |
+| **Ticket ID**   34 | **Reporter**   Procore Plus |
 | --- | --- |
 | **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
 | **Type**   Task | **Date**   October 13, 2025 |
@@ -77,4 +77,4 @@ The Security Team requires a new local user (Reuben Camilo, username: rcamilo) t
 | 6 | Foreman remote job succeeded on stage-web | Foreman results: 100% Success — green | ✅  Done |
 | 7 | User rcamilo exists on servers | id rcamilo or getent passwd rcamilo | ✅  Done |
 
-> **Ticket T-34 · Foreman Remote Command: Create User rcamilo · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
+> **Ticket 34 · Foreman Remote Command: Create User rcamilo · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
