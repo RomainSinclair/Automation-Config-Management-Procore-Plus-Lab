@@ -1,6 +1,6 @@
-> **PROCORE-PLUS LAB** **Ticket TL-18: Ansible: Create Shared Scripts Directory** *Ansible Playbook · Directory Provisioning · Webmasters Group · Permissions 775*
+> **PROCORE-PLUS LAB** **Ticket 18: Ansible: Create Shared Scripts Directory** *Ansible Playbook · Directory Provisioning · Webmasters Group · Permissions 775*
 
-| **Ticket ID**   TL-18 | **Reporter**   Procore Plus |
+| **Ticket ID**   18 | **Reporter**   Procore Plus |
 | --- | --- |
 | **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
 | **Type**   Task | **Resolved**   October 3, 2025 |
@@ -74,4 +74,4 @@ sudo vim create_webmasters_shareddir_<initials>.yml
 | 8 | Group is webmasters on both servers | ls -ld output: group column = webmasters | ✅  Done |
 | 9 | Permissions are 775 (drwxrwxr-x) | ls -ld output: mode = drwxrwxr-x | ✅  Done |
 
-> **Ticket TL-18 · Ansible: Create Shared Scripts Directory · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
+> **Ticket 18 · Ansible: Create Shared Scripts Directory · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
