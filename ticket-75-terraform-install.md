@@ -100,10 +100,3 @@ terraform plan
 
 - VM templates in vSphere are created via the UI (Clone to Template) not from the Terraform provider itself
 
-## Screenshots
-
-***Figure 1: vSphere Client — Clone Virtual Machine to Template wizard, storage selection (DS-01)***
-
-***Figure 2: vSphere — VM template creation confirmation***
-
-***Figure 3: dev-app terminal — Terraform installed and version verified***
