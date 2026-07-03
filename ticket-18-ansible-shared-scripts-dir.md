@@ -5,7 +5,7 @@
 | **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
 | **Type**   Task | **Resolved**   October 3, 2025 |
 | **Priority**   Medium | **Control Node**   dev-ansible |
-| **Status**   Done ✓ | **Target Servers**   dev-app, dev-performance |
+| **Status**   Done  | **Target Servers**   dev-app, dev-performance |
 
 ## 1. Objective
 
