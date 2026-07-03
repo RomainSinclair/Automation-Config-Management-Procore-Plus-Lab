@@ -3,7 +3,7 @@
 | --- | --- |
 | **Ticket #** | 34 |
 | **Title** | Foreman Remote Command: Create User rcamilo** *Remote Job Execution · useradd · SSH Trust · Foreman Proxy* |
-| **Category** | Infrastructure / Ansible Automation |
+| **Category** | Infrastructure / Foreman |
 | **Prepared by** | Romain Sinclair |
 | **Environment** | Procore-Plus Lab (CentOS Stream / RHEL-based) |
 | **Status**   | **Servers**   dev-app, stage-web via Foreman |
