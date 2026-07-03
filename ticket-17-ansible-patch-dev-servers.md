@@ -6,7 +6,7 @@
 | **Category** | Ansible Automation |
 | **Prepared by** | Romain Sinclair |
 | **Environment** | Procore-Plus Lab (CentOS Stream / RHEL-based) |
-| **Target Servers**   dev-app, dev-performance |
+| **Target Servers** |  dev-app, dev-performance |
 
 
 
