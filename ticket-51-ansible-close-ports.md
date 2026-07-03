@@ -116,8 +116,3 @@ ss -tulnp | egrep ':80|:443'
 
 - Automating firewall changes with Ansible is preferred over manual ssh+firewall-cmd for consistency across multiple servers
 
-## Screenshots
-
-***Figure 1: Ansible playbook execution — close_http_https_ports.yml running against dev-app***
-
-***Figure 2: Firewall port validation — confirming ports 80 and 443 are no longer listed***
