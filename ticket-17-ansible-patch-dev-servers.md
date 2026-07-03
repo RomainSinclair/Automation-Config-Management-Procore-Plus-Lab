@@ -1,11 +1,15 @@
-> **PROCORE-PLUS LAB** **Ticket TS5-17: Patch Dev Servers Using Ansible** *Ansible Playbook · yum update · Host Pattern · Compliance Patching*
 
-| **Ticket ID**   TS5-17 | **Reporter**   Procore Plus |
+| **Field** | Value |
 | --- | --- |
-| **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
-| **Type**   Task | **Resolved**   September 22, 2025 |
-| **Priority**   Medium | **Control Node**   dev-ansible |
-| **Status**   Done ✓ | **Target Servers**   dev-app, dev-performance |
+| **Ticket #** | 17 |
+| **Title** | Patch Dev Servers Using Ansible** *Ansible Playbook · yum update · Host Pattern · Compliance Patching |
+| **Category** | Ansible Automation |
+| **Prepared by** | Romain Sinclair |
+| **Environment** | Procore-Plus Lab (CentOS Stream / RHEL-based) |
+| **Target Servers**   dev-app, dev-performance |
+
+
+
 
 ## 1. Objective
 
