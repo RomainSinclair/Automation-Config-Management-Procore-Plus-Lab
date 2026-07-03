@@ -15,7 +15,7 @@
 
 In accordance with company policy, all development servers must be patched regularly. This task uses an Ansible playbook from the dev-ansible control node to automate patching of dev-app and dev-performance simultaneously.
 
-> **📋  Task Requirements** Successful dev server patching via Ansible playbook Route: dev-ansible → dev-app AND dev-performance Playbook location: /opt/ansible/patching/dev-patch.yml Screenshots of playbook execution required
+> **  Task Requirements** Successful dev server patching via Ansible playbook Route: dev-ansible → dev-app AND dev-performance Playbook location: /opt/ansible/patching/dev-patch.yml Screenshots of playbook execution required
 
 ## 2. Why Ansible for Patching? The Engineer's Rationale
 
@@ -36,7 +36,7 @@ In accordance with company policy, all development servers must be patched regul
 # list available playbooks
 ```
 
-> **📸  Screenshot 1: SSH login to dev-ansible and navigation to /opt/ansible/patching**
+> **  Screenshot 1: SSH login to dev-ansible and navigation to /opt/ansible/patching**
 
 ### Step 2 — Run the Patching Playbook (First Attempt)
 
@@ -45,9 +45,9 @@ In accordance with company policy, all development servers must be patched regul
 # -K prompts for BECOME (sudo) password
 ```
 
-> **⚠️  Troubleshooting: Host Pattern Mismatch** Error: [WARNING]: Invalid characters were found in group names but not replaced        [WARNING]: Could not match supplied host pattern, ignoring: dev-[Initials]        Skipping: no hosts matched Cause: The playbook hosts: field contains the placeholder "dev-[Initials]" which was never updated to match the actual group name defined in /etc/ansible/hosts. Fix: Open dev-patch.yml and update the hosts: value to match your actual inventory group name (e.g., dev-tl, dev-ts5, etc.).
+> **  Troubleshooting: Host Pattern Mismatch** Error: [WARNING]: Invalid characters were found in group names but not replaced        [WARNING]: Could not match supplied host pattern, ignoring: dev-[Initials]        Skipping: no hosts matched Cause: The playbook hosts: field contains the placeholder "dev-[Initials]" which was never updated to match the actual group name defined in /etc/ansible/hosts. Fix: Open dev-patch.yml and update the hosts: value to match your actual inventory group name (e.g., dev-tl, dev-ts5, etc.).
 
-> **📸  Screenshot 2: First playbook run showing WARNING host pattern mismatch and skipping output**
+> **  Screenshot 2: First playbook run showing WARNING host pattern mismatch and skipping output**
 
 ### Step 3 — Fix Host Pattern in Playbook
 
@@ -60,9 +60,9 @@ In accordance with company policy, all development servers must be patched regul
 # Verify the playbook contents cat dev-patch.yml
 ```
 
-> **💡  Engineer's Note** Check /etc/ansible/hosts to confirm the correct group name. The hosts: value in the playbook MUST exactly match a group defined in the inventory file.
+> **  Engineer's Note** Check /etc/ansible/hosts to confirm the correct group name. The hosts: value in the playbook MUST exactly match a group defined in the inventory file.
 
-> **📸  Screenshot 3: vim dev-patch.yml showing corrected hosts field and playbook YAML structure**
+> **  Screenshot 3: vim dev-patch.yml showing corrected hosts field and playbook YAML structure**
 
 ### Step 4 — Re-run Playbook and Confirm Success
 
@@ -73,18 +73,18 @@ In accordance with company policy, all development servers must be patched regul
 # dev-performance-ts5.procore.prod1 : ok=2  changed=1  unreachable=0  failed=0
 ```
 
-> **📸  Screenshot 4: Successful PLAY RECAP showing ok=2 changed=1 failed=0 on both hosts**
+> **  Screenshot 4: Successful PLAY RECAP showing ok=2 changed=1 failed=0 on both hosts**
 
 ## 4. Verification Matrix
 
 | **#** | **Check Item** | **How to Verify** | **Status** |
 | --- | --- | --- | --- |
-| 1 | SSH'd into dev-ansible control node | Terminal showing dev-ansible prompt | ✅  Done |
-| 2 | Navigated to /opt/ansible/patching/ | pwd output confirmed correct directory | ✅  Done |
-| 3 | Identified host pattern mismatch in dev-patch.yml | WARNING message in first run output | ✅  Done |
-| 4 | Updated hosts: value to match inventory group | cat dev-patch.yml shows correct group name | ✅  Done |
-| 5 | Playbook ran successfully on dev-app | PLAY RECAP: failed=0 for dev-app | ✅  Done |
-| 6 | Playbook ran successfully on dev-performance | PLAY RECAP: failed=0 for dev-performance | ✅  Done |
+| 1 | SSH'd into dev-ansible control node | Terminal showing dev-ansible prompt |  Done |
+| 2 | Navigated to /opt/ansible/patching/ | pwd output confirmed correct directory |  Done |
+| 3 | Identified host pattern mismatch in dev-patch.yml | WARNING message in first run output |  Done |
+| 4 | Updated hosts: value to match inventory group | cat dev-patch.yml shows correct group name |  Done |
+| 5 | Playbook ran successfully on dev-app | PLAY RECAP: failed=0 for dev-app |  Done |
+| 6 | Playbook ran successfully on dev-performance | PLAY RECAP: failed=0 for dev-performance |  Done |
 
 ## 5. Command Quick Reference
 
@@ -98,4 +98,4 @@ In accordance with company policy, all development servers must be patched regul
 # ── EXECUTE ────────────────────────────────────────────────────────────── ansible-playbook dev-patch.yml -K
 ```
 
-> **Ticket TS5-17 · Patch Dev Servers Using Ansible · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
+> **Ticket 17 · Patch Dev Servers Using Ansible · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
