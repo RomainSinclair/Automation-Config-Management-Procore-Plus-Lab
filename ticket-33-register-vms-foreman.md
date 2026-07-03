@@ -1,11 +1,12 @@
-> **PROCORE-PLUS LAB** **Ticket TS5-33: Register VMs to Foreman Server** *Configuration Management · SSH Trust · Foreman Proxy · Security Compliance*
 
-| **Ticket ID**   TS5-33 | **Reporter**   Procore Plus |
+| **Field** | Value |
 | --- | --- |
-| **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
-| **Type**   Task | **Resolved**   October 7, 2025 |
-| **Priority**   Medium | **Servers**   dev-app, dev-performance, stage-web |
-| **Status**   Done ✓ | **Foreman IP**   10.1.30.24 (stage-foreman.procore.prod) |
+| **Ticket #** | 33 |
+| **Title** | Register VMs to Foreman Server** *Configuration Management · SSH Trust · Foreman Proxy · Security Compliance* |
+| **Category** | Infrastructure / Configuration Management |
+| **Prepared by** | Romain Sinclair |
+| **Environment** | Procore-Plus Lab (CentOS Stream / RHEL-based) |
+
 
 ## 1. Objective
 
