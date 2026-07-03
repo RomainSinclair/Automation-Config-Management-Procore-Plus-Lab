@@ -1,11 +1,13 @@
-> **PROCORE-PLUS LAB** **Ticket TL-18: Ansible: Create Shared Scripts Directory** *Ansible Playbook · Directory Provisioning · Webmasters Group · Permissions 775*
 
-| **Ticket ID**   TL-18 | **Reporter**   Procore Plus |
+| **Field** | Value |
 | --- | --- |
-| **Project**   PROCORE-Plus Lab | **Assignee**   Romain Sinclair |
-| **Type**   Task | **Resolved**   October 3, 2025 |
+| **Ticket #** | 18 |
+| **Title** | Ansible: Create Shared Scripts Directory** *Ansible Playbook · Directory Provisioning · Webmasters Group · Permissions 775* |
+| **Category** | Infrastructure / Ansible Automation |
+| **Prepared by** | Romain Sinclair |
+| **Environment** | Procore-Plus Lab (CentOS Stream / RHEL-based) |
 | **Priority**   Medium | **Control Node**   dev-ansible |
-| **Status**   Done  | **Target Servers**   dev-app, dev-performance |
+
 
 ## 1. Objective
 
