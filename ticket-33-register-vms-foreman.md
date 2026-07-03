@@ -11,7 +11,7 @@
 
 The Security Team requires all infrastructure servers to be registered with the Foreman configuration management server for centralized patching and compliance tracking. This ticket registers dev-app, dev-performance, and stage-web to Foreman.
 
-> **📋  Task Requirements** All servers registered to Foreman: dev-app, dev-performance, stage-web Foreman proxy must have SSH trust to all managed hosts Use Foreman Wiki (http://10.1.10.122) for setup guidance Provide screenshots of all work completed
+> **  Task Requirements** All servers registered to Foreman: dev-app, dev-performance, stage-web Foreman proxy must have SSH trust to all managed hosts Use Foreman Wiki (http://10.1.10.122) for setup guidance Provide screenshots of all work completed
 
 ## 2. Why Foreman? The Engineer's Rationale
 
@@ -32,7 +32,7 @@ The Security Team requires all infrastructure servers to be registered with the 
 # SSH into the Foreman server ssh tshank@10.1.30.24
 ```
 
-> **📸  Screenshot 1: cat /etc/hosts │ grep foreman output and SSH login to Foreman**
+> **  Screenshot 1: cat /etc/hosts │ grep foreman output and SSH login to Foreman**
 
 ### Step 2 — Configure SSH to Allow Root Login on Target Servers
 
@@ -46,9 +46,9 @@ sudo -i
 # Restart SSH service systemctl restart sshd
 ```
 
-> **💡  Engineer's Note** PermitRootLogin yes is required temporarily for Foreman proxy key exchange. In production hardened environments, certificate-based auth replaces password-based root login after initial setup.
+> **  Engineer's Note** PermitRootLogin yes is required temporarily for Foreman proxy key exchange. In production hardened environments, certificate-based auth replaces password-based root login after initial setup.
 
-> **📸  Screenshot 2: sshd_config with PermitRootLogin yes and systemctl restart sshd**
+> **  Screenshot 2: sshd_config with PermitRootLogin yes and systemctl restart sshd**
 
 ### Step 3 — Add Foreman Proxy SSH Keys to Known Hosts
 
@@ -61,9 +61,9 @@ From the stage-foreman server, scan the target server keys and add the Foreman p
 # Copy Foreman proxy public key to target server ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.209 -f
 ```
 
-> **⚠️  Troubleshooting: SSH Known Hosts Mismatch** Symptom: Foreman remote jobs fail — SSH host key verification fails. Cause: The foreman-proxy user's known_hosts doesn't have entries for the target servers. Fix: Run ssh-keyscan for both ecdsa and ed25519 key types, into BOTH /root/.ssh and ~foreman-proxy/.ssh. Critical: Must copy the FOREMAN-PROXY key (not root key) using ssh-copy-id with the -f force flag.
+> **  Troubleshooting: SSH Known Hosts Mismatch** Symptom: Foreman remote jobs fail — SSH host key verification fails. Cause: The foreman-proxy user's known_hosts doesn't have entries for the target servers. Fix: Run ssh-keyscan for both ecdsa and ed25519 key types, into BOTH /root/.ssh and ~foreman-proxy/.ssh. Critical: Must copy the FOREMAN-PROXY key (not root key) using ssh-copy-id with the -f force flag.
 
-> **📸  Screenshot 3: ssh-keyscan commands and ssh-copy-id output showing key added**
+> ** Screenshot 3: ssh-keyscan commands and ssh-copy-id output showing key added**
 
 ### Step 4 — Verify Clean SSH Access
 
@@ -74,18 +74,18 @@ From the stage-foreman server, scan the target server keys and add the Foreman p
 # Repeat entire process for stage-web (10.1.30.211) ssh-keygen -R 10.1.30.211 ssh-keyscan -t ecdsa  10.1.30.211 >> /root/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.211 >> /root/.ssh/known_hosts ssh-keyscan -t ecdsa  10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.211 -f
 ```
 
-> **📸  Screenshot 4: Clean SSH login to dev-app and stage-web from Foreman proxy**
+> ** Screenshot 4: Clean SSH login to dev-app and stage-web from Foreman proxy**
 
 ## 4. Verification Matrix
 
 | **#** | **Check Item** | **How to Verify** | **Status** |
 | --- | --- | --- | --- |
-| 1 | Foreman server IP confirmed in /etc/hosts | cat /etc/hosts │ grep foreman | ✅  Done |
-| 2 | PermitRootLogin yes set on all target servers | grep PermitRootLogin /etc/ssh/sshd_config | ✅  Done |
-| 3 | ssh-keyscan run for both ecdsa and ed25519 keys | known_hosts files updated for root and foreman-proxy | ✅  Done |
-| 4 | Foreman proxy public key copied to dev-app | ssh-copy-id output: "Number of key(s) added: 1" | ✅  Done |
-| 5 | Foreman proxy public key copied to stage-web | ssh-copy-id output: "Number of key(s) added: 1" | ✅  Done |
-| 6 | Clean SSH access verified to dev-app | SSH from Foreman without password/warnings | ✅  Done |
-| 7 | Clean SSH access verified to stage-web | SSH from Foreman without password/warnings | ✅  Done |
+| 1 | Foreman server IP confirmed in /etc/hosts | cat /etc/hosts │ grep foreman | Done |
+| 2 | PermitRootLogin yes set on all target servers | grep PermitRootLogin /etc/ssh/sshd_config | Done |
+| 3 | ssh-keyscan run for both ecdsa and ed25519 keys | known_hosts files updated for root and foreman-proxy | Done |
+| 4 | Foreman proxy public key copied to dev-app | ssh-copy-id output: "Number of key(s) added: 1" | Done |
+| 5 | Foreman proxy public key copied to stage-web | ssh-copy-id output: "Number of key(s) added: 1" | Done |
+| 6 | Clean SSH access verified to dev-app | SSH from Foreman without password/warnings | Done |
+| 7 | Clean SSH access verified to stage-web | SSH from Foreman without password/warnings | Done |
 
-> **Ticket TS5-33 · Register VMs to Foreman Server · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
+> **Ticket 33 · Register VMs to Foreman Server · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
