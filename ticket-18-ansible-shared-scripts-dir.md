@@ -11,7 +11,7 @@
 
 The webmasters team requires a shared scripting directory on all development servers for collaboration. Instead of manually creating directories on each server, Ansible automates provisioning to ensure consistency, repeatability, and speed across the infrastructure.
 
-> **📋  Task Requirements** Directory: /opt/scripts/<yourusername>/ on BOTH dev-app and dev-performance Owner: <yourusername> (your Linux account) Group: webmasters Permissions: 775 (rwxrwxr-x) Ansible route: dev-ansible → dev-app AND dev-performance
+> **  Task Requirements** Directory: /opt/scripts/<yourusername>/ on BOTH dev-app and dev-performance Owner: <yourusername> (your Linux account) Group: webmasters Permissions: 775 (rwxrwxr-x) Ansible route: dev-ansible → dev-app AND dev-performance
 
 ## 2. Understanding Permission 775
 
@@ -31,9 +31,9 @@ The webmasters team requires a shared scripting directory on all development ser
 # confirm: /opt/ansible/patching
 ```
 
-> **💡  Engineer's Note** All Ansible work must originate from the control node. Running ansible-playbook from a managed node (dev-app, dev-performance) would fail — those servers don't have the inventory or SSH keys needed to reach other hosts.
+> **  Engineer's Note** All Ansible work must originate from the control node. Running ansible-playbook from a managed node (dev-app, dev-performance) would fail — those servers don't have the inventory or SSH keys needed to reach other hosts.
 
-> **📸  Screenshot 1: SSH login to dev-ansible and cd /opt/ansible/patching**
+> **  Screenshot 1: SSH login to dev-ansible and cd /opt/ansible/patching**
 
 ### Step 2 — Create the Ansible Playbook
 
@@ -43,9 +43,9 @@ sudo vim create_webmasters_shareddir_<initials>.yml
 # Playbook contents: --- - name: Create scripts directory for <user>   hosts: dev-<initials>   become: yes   tasks:     - name: Create /opt/scripts/{{ ansible_user }}/ directory       file:         path: "/opt/scripts/{{ ansible_user }}/"         state: directory         owner: "{{ ansible_user }}"         group: webmasters         mode: "0775"
 ```
 
-> **💡  Engineer's Note** {{ ansible_user }} is an Ansible magic variable — it automatically uses the SSH username connecting to each host. This makes the playbook reusable across different users without hardcoding names. become: yes is required to create directories in /opt/ which is root-owned.
+> **  Engineer's Note** {{ ansible_user }} is an Ansible magic variable — it automatically uses the SSH username connecting to each host. This makes the playbook reusable across different users without hardcoding names. become: yes is required to create directories in /opt/ which is root-owned.
 
-> **📸  Screenshot 2: vim editor showing complete playbook YAML and cat output confirming contents**
+> **  Screenshot 2: vim editor showing complete playbook YAML and cat output confirming contents**
 
 ### Step 3 — Execute and Verify
 
@@ -58,20 +58,20 @@ sudo vim create_webmasters_shareddir_<initials>.yml
 # Expected: drwxrwxr-x. 2 <user> webmasters 6 Oct 3 00:00 /opt/scripts/<user>/
 ```
 
-> **📸  Screenshot 3: ansible-playbook PLAY RECAP showing ok=2 changed=1 failed=0 on both hosts**
+> **  Screenshot 3: ansible-playbook PLAY RECAP showing ok=2 changed=1 failed=0 on both hosts**
 
 ## 4. Verification Matrix
 
 | **#** | **Check Item** | **How to Verify** | **Status** |
 | --- | --- | --- | --- |
-| 1 | Playbook file created in /opt/ansible/patching/ | cat filename.yml — file exists and syntax is correct | ✅  Done |
-| 2 | Playbook executed with ansible-playbook -K | Terminal output shows PLAY RECAP | ✅  Done |
-| 3 | PLAY RECAP shows failed=0 on dev-app | RECAP line: failed=0 | ✅  Done |
-| 4 | PLAY RECAP shows failed=0 on dev-performance | RECAP line: failed=0 | ✅  Done |
-| 5 | /opt/scripts/<user>/ exists on dev-app | ls -ld confirms directory present | ✅  Done |
-| 6 | /opt/scripts/<user>/ exists on dev-performance | ls -ld confirms directory present | ✅  Done |
-| 7 | Owner is correct user on both servers | ls -ld output: owner column = <username> | ✅  Done |
-| 8 | Group is webmasters on both servers | ls -ld output: group column = webmasters | ✅  Done |
-| 9 | Permissions are 775 (drwxrwxr-x) | ls -ld output: mode = drwxrwxr-x | ✅  Done |
+| 1 | Playbook file created in /opt/ansible/patching/ | cat filename.yml — file exists and syntax is correct |  Done |
+| 2 | Playbook executed with ansible-playbook -K | Terminal output shows PLAY RECAP |  Done |
+| 3 | PLAY RECAP shows failed=0 on dev-app | RECAP line: failed=0 |  Done |
+| 4 | PLAY RECAP shows failed=0 on dev-performance | RECAP line: failed=0 |  Done |
+| 5 | /opt/scripts/<user>/ exists on dev-app | ls -ld confirms directory present |  Done |
+| 6 | /opt/scripts/<user>/ exists on dev-performance | ls -ld confirms directory present |  Done |
+| 7 | Owner is correct user on both servers | ls -ld output: owner column = <username> |  Done |
+| 8 | Group is webmasters on both servers | ls -ld output: group column = webmasters |  Done |
+| 9 | Permissions are 775 (drwxrwxr-x) | ls -ld output: mode = drwxrwxr-x |  Done |
 
-> **Ticket TL-18 · Ansible: Create Shared Scripts Directory · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
+> **Ticket 18 · Ansible: Create Shared Scripts Directory · Procore-Plus Lab***  │  Assignee: Romain Sinclair · PROCORE Infrastructure Team*
