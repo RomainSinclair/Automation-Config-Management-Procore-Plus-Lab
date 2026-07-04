@@ -29,8 +29,8 @@ The Security Team requires all infrastructure servers to be registered with the 
 
 ```bash
 # On dev-app — confirm foreman server IP in hosts file cat /etc/hosts │ grep foreman
-# Output: 10.1.30.24    stage-foreman.procore.prod
-# SSH into the Foreman server ssh tshank@10.1.30.24
+# Output: 10.1.x.x    stage-foreman.procore.prod
+# SSH into the Foreman server ssh rsinclair@10.1.30.x.x
 ```
 
 > **  Screenshot 1: cat /etc/hosts │ grep foreman output and SSH login to Foreman**
@@ -56,10 +56,10 @@ sudo -i
 From the stage-foreman server, scan the target server keys and add the Foreman proxy public key.
 
 ```bash
-# On stage-foreman — remove stale key (if host was previously registered) ssh-keygen -R 10.1.30.209
-# Scan and add target server keys for root ssh-keyscan -t ecdsa  10.1.30.209 >> /root/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.209 >> /root/.ssh/known_hosts
-# Scan and add target server keys for foreman-proxy user ssh-keyscan -t ecdsa  10.1.30.209 >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.209 >> ~foreman-proxy/.ssh/known_hosts
-# Copy Foreman proxy public key to target server ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.209 -f
+# On stage-foreman — remove stale key (if host was previously registered) ssh-keygen -R 10.1.x.x
+# Scan and add target server keys for root ssh-keyscan -t ecdsa  10.1.30.209 >> /root/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.x.x >> /root/.ssh/known_hosts
+# Scan and add target server keys for foreman-proxy user ssh-keyscan -t ecdsa  10.1.x.x >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.x.x >> ~foreman-proxy/.ssh/known_hosts
+# Copy Foreman proxy public key to target server ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.x.x -f
 ```
 
 > **  Troubleshooting: SSH Known Hosts Mismatch** Symptom: Foreman remote jobs fail — SSH host key verification fails. Cause: The foreman-proxy user's known_hosts doesn't have entries for the target servers. Fix: Run ssh-keyscan for both ecdsa and ed25519 key types, into BOTH /root/.ssh and ~foreman-proxy/.ssh. Critical: Must copy the FOREMAN-PROXY key (not root key) using ssh-copy-id with the -f force flag.
@@ -72,7 +72,7 @@ From the stage-foreman server, scan the target server keys and add the Foreman p
 # Verify foreman-proxy can SSH cleanly to dev-app ssh 10.1.30.209
 # from stage-foreman
 # Expected: Clean login without password or key warnings
-# Repeat entire process for stage-web (10.1.30.211) ssh-keygen -R 10.1.30.211 ssh-keyscan -t ecdsa  10.1.30.211 >> /root/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.211 >> /root/.ssh/known_hosts ssh-keyscan -t ecdsa  10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.211 -f
+# Repeat entire process for stage-web (10.1.x.x) ssh-keygen -R 10.1.x.x ssh-keyscan -t ecdsa  10.1.x.x >> /root/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.x.x >> /root/.ssh/known_hosts ssh-keyscan -t ecdsa  10.1.x.x >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.x.x >> ~foreman-proxy/.ssh/known_hosts ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.x.x -f
 ```
 
 > ** Screenshot 4: Clean SSH login to dev-app and stage-web from Foreman proxy**
