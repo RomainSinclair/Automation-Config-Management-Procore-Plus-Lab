@@ -13,7 +13,7 @@
 
 The Security Team requires a new local user (Reuben Camilo, username: rcamilo) to be created on all infrastructure VMs. Rather than SSH-ing into each server individually, Foreman's remote job execution feature automates this across all hosts simultaneously.
 
-> **  Task Requirements** Create user rcamilo (full name: Reuben Camilo) on ALL servers Use Foreman remote job execution — NOT manual SSH Reference: Foreman wiki (http://10.1.10.122) for remote command guidance Screenshots of Foreman UI and job results required
+> **  Task Requirements** Create user rcamilo (full name: Reuben Camilo) on ALL servers Use Foreman remote job execution — NOT manual SSH Reference: Foreman wiki (http://10.1.x.x) for remote command guidance Screenshots of Foreman UI and job results required
 
 ## 2. Step-by-Step Execution
 
@@ -21,13 +21,13 @@ The Security Team requires a new local user (Reuben Camilo, username: rcamilo) t
 
 ```bash
 # Navigate to Foreman web interface
-# URL: https://10.1.30.24/users/login
+# URL: https://10.1.x.x/users/login
 # Path: Hosts → All Hosts → select target VM
 # Actions (top right) → Schedule Remote Job
 # Configure the job:
 #  Job Category: Commands
 #  Job Template: Run Command — SSH Default
-#  Search Query: name ^ (dev-app-ma3.procore.prod1)
+#  Search Query: name ^ (dev-app-rs1.procore.prod1)
 ```
 
 > **  Screenshot 1: Foreman web UI showing remote job configuration form**
@@ -49,7 +49,7 @@ The Security Team requires a new local user (Reuben Camilo, username: rcamilo) t
 
 ### Step 3 — First Attempt — 100% Failed
 
-> **  Troubleshooting: Foreman Remote Job 100% Failed** Symptom: Foreman shows 100% Failed — red circle with 1 failure, 0 success. Cause: The foreman-proxy user did not have trusted SSH access to the target servers.        foreman-proxy/.ssh/known_hosts was missing entries for the target hosts,        and the Foreman proxy public key had not been copied to target servers. Fix (performed on stage-foreman as root):   ssh-keygen -R 10.1.30.208  (remove old/stale key)   ssh-keyscan -t ecdsa  10.1.30.209 >> /root/.ssh/known_hosts   ssh-keyscan -t ed25519 10.1.30.209 >> /root/.ssh/known_hosts   ssh-keyscan -t ecdsa  10.1.30.209 >> ~foreman-proxy/.ssh/known_hosts   ssh-keyscan -t ed25519 10.1.30.209 >> ~foreman-proxy/.ssh/known_hosts   ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.209 -f
+> **  Troubleshooting: Foreman Remote Job 100% Failed** Symptom: Foreman shows 100% Failed — red circle with 1 failure, 0 success. Cause: The foreman-proxy user did not have trusted SSH access to the target servers.        foreman-proxy/.ssh/known_hosts was missing entries for the target hosts,        and the Foreman proxy public key had not been copied to target servers. Fix (performed on stage-foreman as root):   ssh-keygen -R 10.1.x.x  (remove old/stale key)   ssh-keyscan -t ecdsa  10.1.x.x >> /root/.ssh/known_hosts   ssh-keyscan -t ed25519 10.1.x.x >> /root/.ssh/known_hosts   ssh-keyscan -t ecdsa  10.1.x.x >> ~foreman-proxy/.ssh/known_hosts   ssh-keyscan -t ed25519 10.1.x.x >> ~foreman-proxy/.ssh/known_hosts   ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.x.x -f
 
 > **  Screenshot 3: Foreman job results showing 100% Failed (red) on first attempt**
 
@@ -59,8 +59,8 @@ The Security Team requires a new local user (Reuben Camilo, username: rcamilo) t
 # After ssh-keyscan and ssh-copy-id fix — re-run Foreman job
 # dev-app result:
 # PLAY RECAP: 100% Success (green)
-# Target: dev-app-ma3.procore.prod1
-# Repeat for stage-web (10.1.30.211): ssh-keygen -R 10.1.30.211 ssh-keyscan -t ecdsa 10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.30.211 >> ~foreman-proxy/.ssh/known_hosts ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.30.211 -f
+# Target: dev-app-rs1.procore.prod1
+# Repeat for stage-web (10.1.x.x): ssh-keygen -R 10.1.x.x ssh-keyscan -t ecdsa 10.1.x.x >> ~foreman-proxy/.ssh/known_hosts ssh-keyscan -t ed25519 10.1.x.x >> ~foreman-proxy/.ssh/known_hosts ssh-copy-id -i ~foreman-proxy/.ssh/id_rsa_foreman_proxy.pub 10.1.x.x -f
 # stage-web result:
 # 100% Success (green)
 ```
