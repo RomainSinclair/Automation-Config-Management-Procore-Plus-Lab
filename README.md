@@ -20,7 +20,7 @@ Ansible (playbooks, host patterns, idempotent tasks) · Foreman (remote jobs, ho
 | #17 | Patch Dev Servers Using Ansible | [ticket-17-ansible-patch-dev-servers.md](tickets/ticket-17-ansible-patch-dev-servers.md) |
 | #34 | Foreman Remote Command: Create User rcamilo | [ticket-34-foreman-remote-command.md](tickets/ticket-34-foreman-remote-command.md) |
 | #33 | Register VMs to Foreman Server | [ticket-33-register-vms-foreman.md](tickets/ticket-33-register-vms-foreman.md) |
-| #75 | Install Terraform on a Virtual Machine | [view](tickets/ticket-75-terraform-install.md) |
+| #75 | Install Terraform on a Virtual Machine | [ticket-75-terraform-install.md](tickets/ticket-75-terraform-install.md) |
 
 ## Highlights
 
