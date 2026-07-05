@@ -14,7 +14,7 @@ Ansible (playbooks, host patterns, idempotent tasks) · Foreman (remote jobs, ho
 
 | Ticket | Title | Documentation |
 | --- | --- | --- |
-| #50 | Create Tasks Using an Ansible Playbook (user + tmux) | [view](tickets/ticket-50-ansible-playbook-tasks.md) |
+| #50 | Create Tasks Using an Ansible Playbook (user + tmux) | [ticket-50-ansible-playbook-tasks.md](tickets/ticket-50-ansible-playbook-tasks.md) |
 | #51 | Close Ports 80 and 443 via Ansible Playbook | [ticket-51-ansible-close-ports.md](tickets/ticket-51-ansible-close-ports.md) |
 | #18 | Ansible: Create Shared Scripts Directory (webmasters, 775) | [ticket-18-ansible-shared-scripts-dir.md](tickets/ticket-18-ansible-shared-scripts-dir.md) |
 | #17 | Patch Dev Servers Using Ansible | [ticket-17-ansible-patch-dev-servers.md](tickets/ticket-17-ansible-patch-dev-servers.md) |
